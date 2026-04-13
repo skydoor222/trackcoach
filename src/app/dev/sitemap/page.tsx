@@ -285,7 +285,7 @@ export default function SitemapPage() {
                 .filter((p) => p.category === category)
                 .map((page) => {
                   const st = statusConfig[page.status];
-                  const isClickable = page.status === "live" || page.status === "wip";
+                  const isClickable = (page.status === "live" || page.status === "wip") && !page.path.includes("[");
                   const cls = `flex items-center gap-4 rounded-lg border bg-white p-4 transition-shadow ${
                     isClickable ? "hover:shadow-md cursor-pointer" : "opacity-70"
                   }`;
