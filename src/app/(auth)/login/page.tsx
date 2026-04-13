@@ -7,7 +7,6 @@ import { createClient } from "@/lib/supabase/client";
 import { loginSchema, type LoginInput } from "@/lib/validations/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export default function LoginPage() {
   const [form, setForm] = useState<LoginInput>({ email: "", password: "" });
@@ -48,19 +47,27 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <Link href="/" className="text-2xl font-bold text-blue-600 mb-2 block">
-            TrackCoach
+    <div className="flex min-h-screen">
+      {/* Left — Form */}
+      <div className="flex flex-1 flex-col justify-center px-6 py-12 sm:px-12 lg:px-16">
+        <div className="mx-auto w-full max-w-sm">
+          <Link href="/" className="flex items-center gap-2 mb-10">
+            <div className="h-8 w-8 rounded-lg bg-navy-900 flex items-center justify-center">
+              <span className="text-sm font-black text-white tracking-tighter">TC</span>
+            </div>
+            <span className="text-lg font-bold text-navy-900">TrackCoach</span>
           </Link>
-          <CardTitle>ログイン</CardTitle>
-          <CardDescription>アカウントにログインしてください</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+
+          <h1 className="text-2xl font-bold text-navy-900">ログイン</h1>
+          <p className="mt-2 text-sm text-slate-500">
+            アカウントにログインしてください
+          </p>
+
+          <form onSubmit={handleSubmit} className="mt-8 space-y-5">
             {errors.form && (
-              <p className="text-sm text-red-600 text-center">{errors.form}</p>
+              <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3">
+                <p className="text-sm text-red-700">{errors.form}</p>
+              </div>
             )}
             <Input
               id="email"
@@ -84,14 +91,35 @@ export default function LoginPage() {
               {loading ? "ログイン中..." : "ログイン"}
             </Button>
           </form>
-          <p className="mt-4 text-center text-sm text-gray-500">
+
+          <p className="mt-6 text-center text-sm text-slate-500">
             アカウントをお持ちでない方は{" "}
-            <Link href="/register" className="text-blue-600 hover:underline">
+            <Link
+              href="/register"
+              className="font-semibold text-navy-700 hover:text-navy-900 transition-colors"
+            >
               新規登録
             </Link>
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+
+      {/* Right — Visual Panel (desktop only) */}
+      <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-center bg-navy-950 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-racing-red/10 rounded-full blur-3xl" />
+        <div className="relative text-center px-12">
+          <div className="mx-auto h-20 w-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8">
+            <span className="text-3xl font-black text-white tracking-tighter">TC</span>
+          </div>
+          <h2 className="text-2xl font-bold text-white">
+            おかえりなさい
+          </h2>
+          <p className="mt-3 text-sm text-slate-400 max-w-xs mx-auto leading-relaxed">
+            ログインして、あなたのドライビングスキルを次のレベルへ。
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

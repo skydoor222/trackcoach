@@ -30,12 +30,13 @@ export function StarRating({
             key={i}
             size={size}
             className={cn(
-              interactive && "cursor-pointer",
+              "transition-colors duration-150",
+              interactive && "cursor-pointer hover:scale-110 transition-transform",
               filled
-                ? "fill-yellow-400 text-yellow-400"
+                ? "fill-amber-400 text-amber-400"
                 : half
-                  ? "fill-yellow-200 text-yellow-400"
-                  : "text-gray-300"
+                  ? "fill-amber-200 text-amber-400"
+                  : "text-slate-300"
             )}
             onClick={() => interactive && onChange?.(i + 1)}
           />

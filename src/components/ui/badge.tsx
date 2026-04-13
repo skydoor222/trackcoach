@@ -7,11 +7,12 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-blue-100 text-blue-800",
-        secondary: "bg-gray-100 text-gray-800",
-        success: "bg-green-100 text-green-800",
-        warning: "bg-yellow-100 text-yellow-800",
-        destructive: "bg-red-100 text-red-800",
+        default: "bg-navy-900/10 text-navy-900",
+        secondary: "bg-slate-100 text-slate-700",
+        success: "bg-teal-500/10 text-teal-600 ring-1 ring-inset ring-teal-500/20",
+        warning: "bg-amber-500/10 text-amber-700 ring-1 ring-inset ring-amber-500/20",
+        destructive: "bg-red-500/10 text-red-700 ring-1 ring-inset ring-red-500/20",
+        racing: "bg-racing-red/10 text-racing-red ring-1 ring-inset ring-racing-red/20",
       },
     },
     defaultVariants: {

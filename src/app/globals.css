@@ -1,8 +1,58 @@
 @import "tailwindcss";
 
+/*
+ * TrackCoach Design System
+ * Theme: Motorsport Premium — Dark Navy + Racing Red
+ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary — Deep Navy (trust, speed, professionalism) */
+  --navy-950: #0A0F1C;
+  --navy-900: #0D1B2A;
+  --navy-800: #1B2838;
+  --navy-700: #1D3557;
+  --navy-600: #264573;
+  --navy-500: #3A6EA5;
+
+  /* Accent — Racing Red (CTAs, urgency, motorsport DNA) */
+  --red-600: #DC2626;
+  --red-500: #E63946;
+  --red-400: #F87171;
+
+  /* Teal — Trust & Success */
+  --teal-600: #0D9488;
+  --teal-500: #14B8A6;
+  --teal-400: #2DD4BF;
+
+  /* Amber — Ratings & Warnings */
+  --amber-500: #F59E0B;
+  --amber-400: #FBBF24;
+
+  /* Neutrals */
+  --slate-950: #0F172A;
+  --slate-900: #1E293B;
+  --slate-800: #334155;
+  --slate-700: #475569;
+  --slate-600: #64748B;
+  --slate-500: #94A3B8;
+  --slate-400: #CBD5E1;
+  --slate-300: #E2E8F0;
+  --slate-200: #F1F5F9;
+  --slate-100: #F8FAFC;
+  --slate-50: #FAFBFC;
+
+  /* Semantic */
+  --background: var(--slate-50);
+  --foreground: var(--slate-950);
+  --muted: var(--slate-600);
+  --border: var(--slate-300);
+  --ring: var(--navy-500);
+
+  /* Surface */
+  --card-bg: #FFFFFF;
+  --card-border: var(--slate-200);
+  --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.06);
+  --card-shadow-hover: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.06);
 }
 
 @theme inline {
@@ -10,17 +60,63 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Expose design tokens to Tailwind */
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-navy-700: var(--navy-700);
+  --color-navy-600: var(--navy-600);
+  --color-navy-500: var(--navy-500);
+  --color-racing-red: var(--red-500);
+  --color-racing-red-dark: var(--red-600);
+  --color-racing-red-light: var(--red-400);
+  --color-teal-600: var(--teal-600);
+  --color-teal-500: var(--teal-500);
+  --color-teal-400: var(--teal-400);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), "Noto Sans JP", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.7;
+}
+
+/* Focus ring utility */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth transitions for interactive elements */
+.transition-gpu {
+  transition-property: transform, box-shadow, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+  will-change: transform;
+}
+
+/* Speed-line shimmer for motorsport feel */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer-line {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 2s infinite;
 }
